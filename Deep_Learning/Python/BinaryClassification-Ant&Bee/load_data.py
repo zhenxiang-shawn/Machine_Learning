@@ -6,12 +6,13 @@ from torchvision import transforms
 
 writer = SummaryWriter("logs")
 
+
 class MyDataset(Dataset):
     def __init__(self, root_dir, image_dir, label_dir, transform):
         self.root_dir = root_dir
         self.image_dir = image_dir
         self.label_dir = label_dir
-        self.image_path = os.path.join(image_dir, image_dir)
+        self.image_path = os.path.join(root_dir, image_dir)
         self.label_path = os.path.join(root_dir, label_dir)
 
         self.image_list = sorted(os.listdir(self.image_path))
@@ -39,12 +40,13 @@ class MyDataset(Dataset):
 if __name__ == '__main__':
     transform = transforms.Compose(
         [transforms.Resize((256, 256)), transforms.ToTensor()])
-    root_dir = "dataset/train"
-    image_ants = "ants_image"
-    label_ants = "ants_label"
+    root_dir = ("/Users/zhenxiangjin/Projects/Machine_Learning/Data"
+                "/cv_binary_classification/hymenoptera_data")
+    image_ants = "train/ants_image"
+    label_ants = "train/ants_label"
     ants_dataset = MyDataset(root_dir, image_ants, label_ants, transform)
-    image_bees = "bees_image"
-    label_bees = "bees_label"
+    image_bees = "train/bees_image"
+    label_bees = "train/bees_label"
     bees_dataset = MyDataset(root_dir, image_bees, label_bees, transform)
     train_dataset = ants_dataset + bees_dataset
 
