@@ -46,7 +46,7 @@ class MNISTDataModule(L.LightningDataModule):
         MNIST(self.data_dir, train=False, download=True)
 
     def setup(self, stage=None):
-        # Assign train/val datasets for use in dataloaders
+        # Assign train/eval datasets for use in dataloaders
         if stage == "fit" or stage is None:
             mnist_full = MNIST(self.data_dir, train=True, transform=self.transform)
             self.mnist_train, self.mnist_val = random_split(mnist_full, [55000, 5000])

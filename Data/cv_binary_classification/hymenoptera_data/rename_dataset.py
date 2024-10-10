@@ -6,7 +6,7 @@ Author: Zhenxiang Jin (zhenxiang.shawn@zohomail.com)
 """
 import os
 
-datasets = ['train', 'val']
+datasets = ['eval']
 
 for dataset in datasets:
     dataset_abs_path = os.path.abspath(dataset)
